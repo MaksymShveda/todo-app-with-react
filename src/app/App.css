@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;800&display=swap');
+#app{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFEEFD;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+header{
+    display: flex;
+    margin-left:5%;
+    margin-top:20px;
+    align-items: center;
+}
+
+header h1{
+    font-weight:800;
+}
+
+header button{
+    width: 48px;
+    height: 48px;
+    margin-left: 20px;
+    border: none;
+}
+
+body{
+    margin:0;
+}
