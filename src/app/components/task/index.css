@@ -1,0 +1,25 @@
+.task{
+    width: 45%;
+    background-color: #FFFFFF;
+    box-shadow: 3px 3px 10px 0px #00000033;
+    margin-top: 30px;
+    padding: 0 2% 0 2%;
+}
+
+.task div{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.task-tools button{
+    border:none;
+    background:transparent;
+    padding: 0;
+}
+
+.task-tools{
+    width: 12%;
+}
+

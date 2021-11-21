@@ -1,26 +1,32 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 
-const useTasks = (tasks) =>{
-    const [tasksData, setTasksData] = useState(tasks)
-    const [loading, setLoading] = useState(false);
+
+
+const useTasks = () =>{
+    const [tasksData, setTasksData] = useState({})
+    const [isLoaded, setLoaded] = useState(false);
+
+    const getTasksFromApi = async()=>{
+        setLoaded(previous=>false)
+        const response = await fetch("https://6129ebf1068adf001789b975.mockapi.io/api/tasks");
+        const result = await response.json();
+        setTasksData(previous=>result)
+        setLoaded(previous=>true)
+    };
 
     useEffect(()=>{
-        const getTasksFromApi = async()=>{
-            const response = await fetch("https://6129ebf1068adf001789b975.mockapi.io/api/tasks");
-            const result = await response.json();
-            await setTasksData(previous=>result);
-            await setLoading(previous=>true)
-        }
-        getTasksFromApi();
-    
+console.log("render")
+       getTasksFromApi()
+        
     },[])
 
 
     return {
         tasksData,
         setTasksData,
-        loading
+        isLoaded,
+        getTasksFromApi
     }
 }
 
