@@ -6,9 +6,10 @@ import Modal from '../modal';
 import Form from '../form';
 import React from 'react';
 
-const Task = ({task}) => {
+const Task = (props) => {
     
-    const formState = useForm()
+
+
 
     
     
@@ -17,9 +18,9 @@ const Task = ({task}) => {
         <React.Fragment>
         <div className="task">
             <div>
-                <h3>{task.name}</h3>
+                <h3>{props.name}</h3>
                 <div className="task-tools">
-                    <button onClick={()=>formState.handleClick(task.name, task.description)}>
+                    <button onClick={()=>props.handleClick(props.name, props.description, "edit", props.id)}>
                         <img alt="Edit Task" src={editImage}></img>    
                     </button>
                     <button >
@@ -27,9 +28,8 @@ const Task = ({task}) => {
                     </button>
                 </div>
             </div>
-            <p>{task.description}</p>
+            <p>{props.description}</p>
         </div>
-        {formState.formLoaded===true ? (<Modal><Form name={task.name} description={task.description} type="edit" id={task.id}/></Modal>) : null }
         </React.Fragment>
     )
 }

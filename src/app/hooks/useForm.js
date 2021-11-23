@@ -6,9 +6,9 @@ const useForm = () => {
     const [formLoaded, setFormLoaded] = useState(false)
     const taskManager=useTasks()
 
-    const handleClick = (name, description) =>{
+    const handleClick = (name, description, type, id) =>{
         setFormLoaded(previous=>true)
-        setFormValue((previous)=>({name:name, description:description}))
+        setFormValue((previous)=>({name:name, description:description, type:type}))
         console.log("click")
     }
     useEffect(()=>{
@@ -23,29 +23,28 @@ const useForm = () => {
     })
 },[])
 
-const formSubmit = (formResults, type, event, id) =>{
+const formSubmit = (name, description,event, id, type) =>{
 
-
+console.log(formValue)
 
     event.preventDefault()
 
     console.log("submit")
     if(type === "new"){
-        newTaskSubmit(formResults);
+        newTaskSubmit(name, description);
     }
     if(type === "edit"){
-        taskEditRequest(formResults, id);
+        taskEditRequest(formValue, id);
     }
-
-        setFormLoaded(previous=>false)
         taskManager.getTasksFromApi();        
 }
 
-const newTaskSubmit = async (formResults) => {
-    const newTask = {
-        name: formResults.name,
-        description: formResults.description,
+const newTaskSubmit = async (name, description) => {
+    console.log(formValue)
+    let newTask = {
         createdAt: Date.now(),
+        name: "sss",
+        description: "ssaqqq",
         completed: false
     };
 
@@ -56,6 +55,7 @@ const newTaskSubmit = async (formResults) => {
         },
         body: JSON.stringify(newTask)
     });
+    await setFormLoaded(previous=>false)
 
 };
 
